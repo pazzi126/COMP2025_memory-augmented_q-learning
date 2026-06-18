@@ -1,0 +1,7 @@
+gymnasium
+numpy
+pandas
+matplotlib
+scipy
+pyyaml
+tqdm

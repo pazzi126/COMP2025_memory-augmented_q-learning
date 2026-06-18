@@ -1,0 +1,16 @@
+environments:
+  frozenlake_4x4:
+    name: "FrozenLake 4x4 Deterministic"
+    map_name: "4x4"
+    is_slippery: false
+  frozenlake_8x8:
+    name: "FrozenLake 8x8 Deterministic"
+    map_name: "8x8"
+    is_slippery: false
+  frozenlake_8x8_stochastic:
+    name: "FrozenLake 8x8 Stochastic"
+    map_name: "8x8"
+    is_slippery: true
+  custom_loop:
+    name: "Custom Loop Map"
+    is_slippery: false

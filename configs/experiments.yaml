@@ -1,0 +1,39 @@
+training:
+  training_episodes: 10000
+  evaluation_episodes: 500
+  num_seeds: 30
+  alpha: 0.1
+  gamma: 0.99
+  epsilon_start: 1.0
+  epsilon_min: 0.05
+  max_episode_steps: 200
+
+agents:
+  qlearning: {}
+  stm:
+    stm_memory_size: 10
+    stm_repetition_penalty: 0.05
+  ltm:
+    ltm_memory_strength: 0.10
+    ltm_memory_decay: 0.0
+  combined:
+    stm_memory_size: 10
+    stm_repetition_penalty: 0.05
+    ltm_memory_strength: 0.10
+    ltm_memory_decay: 0.0
+
+experiments:
+  main_comparison:
+    algorithms: [qlearning, stm, ltm, combined]
+    environments:
+      - frozenlake_4x4
+      - frozenlake_8x8
+      - frozenlake_8x8_stochastic
+      - custom_loop
+
+  hyperparameter_search:
+    num_seeds: 8
+    environment: frozenlake_4x4
+    stm_memory_sizes: [5, 10, 20]
+    stm_repetition_penalties: [0.01, 0.05, 0.10]
+    ltm_memory_strengths: [0.05, 0.10, 0.30]
