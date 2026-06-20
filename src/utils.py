@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import random
+from collections import deque
 from pathlib import Path
 from typing import Any
 
@@ -46,3 +47,34 @@ def linear_epsilon(
         return epsilon_min
     progress = min(episode / (total_episodes - 1), 1.0)
     return epsilon_start + progress * (epsilon_min - epsilon_start)
+
+
+class RepeatRateTracker:
+    """Track repeated-state transitions under a fixed rolling window."""
+
+    def __init__(self, window_size: int) -> None:
+        self.window_size = max(1, window_size)
+        self.recent_states: deque[int] = deque(maxlen=self.window_size)
+        self.repeat_count = 0
+        self.total_transitions = 0
+
+    def reset(self, initial_state: int) -> None:
+        self.recent_states.clear()
+        self.repeat_count = 0
+        self.total_transitions = 0
+        self.recent_states.append(int(initial_state))
+
+    def observe_next_state(self, next_state: int) -> bool:
+        """Record transition into next_state and return repeat indicator."""
+        self.total_transitions += 1
+        repeated = int(next_state) in self.recent_states
+        if repeated:
+            self.repeat_count += 1
+        self.recent_states.append(int(next_state))
+        return repeated
+
+    @property
+    def rate(self) -> float:
+        if self.total_transitions == 0:
+            return 0.0
+        return self.repeat_count / self.total_transitions

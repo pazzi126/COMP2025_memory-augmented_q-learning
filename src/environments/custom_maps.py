@@ -3,12 +3,16 @@
 from __future__ import annotations
 
 CUSTOM_LOOP_MAP = [
-    "SFFF",
-    "FHFH",
-    "FFFH",
-    "HFFG",
+    "SFFFFFFF",
+    "FHFHFFHF",
+    "FFFHFFHF",
+    "FHHFFFHF",
+    "FFFFHFFF",
+    "HFHFFFHF",
+    "FFHFFHFF",
+    "FFFHFFFG",
 ]
 
 CUSTOM_LOOP_DESC = (
-    "Custom 4x4 map with loops and a hole (H) to encourage repeated-state behaviour."
+    "Custom 8x8 maze with loops, dead ends, and multiple alternative paths."
 )

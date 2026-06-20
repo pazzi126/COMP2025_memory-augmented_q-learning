@@ -2,6 +2,8 @@ training:
   training_episodes: 10000
   evaluation_episodes: 500
   num_seeds: 30
+  repeat_window_size: 10
+  rolling_window_size: 200
   alpha: 0.1
   gamma: 0.99
   epsilon_start: 1.0
@@ -33,7 +35,11 @@ experiments:
 
   hyperparameter_search:
     num_seeds: 8
-    environment: frozenlake_4x4
+    environments:
+      - frozenlake_4x4
+      - frozenlake_8x8
+      - frozenlake_8x8_stochastic
+      - custom_loop
     stm_memory_sizes: [5, 10, 20]
     stm_repetition_penalties: [0.01, 0.05, 0.10]
     ltm_memory_strengths: [0.05, 0.10, 0.30]

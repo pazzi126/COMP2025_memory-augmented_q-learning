@@ -12,5 +12,5 @@ environments:
     map_name: "8x8"
     is_slippery: true
   custom_loop:
-    name: "Custom Loop Map"
+    name: "Custom Loop Maze 8x8"
     is_slippery: false
