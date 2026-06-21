@@ -57,12 +57,17 @@ def summarize_seed_results(
     checkpoint_rates = checkpoint_success_rates(training_df)
     success_eval = evaluation_df[evaluation_df["success"] == 1]
     failed_eval = evaluation_df[evaluation_df["success"] == 0]
+    rolling_auc = rolling_success_auc(
+        training_df["success"], window_size=rolling_window_size
+    )
+    normalized_rolling_auc = (
+        rolling_auc / len(training_df) if len(training_df) > 0 else 0.0
+    )
     return {
         "final_success_rate": float(evaluation_df["success"].mean()),
         "learning_curve_auc": learning_curve_auc(training_df["success"]),
-        "rolling_auc": rolling_success_auc(
-            training_df["success"], window_size=rolling_window_size
-        ),
+        "rolling_auc": rolling_auc,
+        "normalized_rolling_auc": float(normalized_rolling_auc),
         "avg_training_return": float(training_df["reward"].mean()),
         "avg_training_length": float(training_df["episode_length"].mean()),
         "avg_repeated_state_rate": float(training_df["repeated_state_rate"].mean()),

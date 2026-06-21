@@ -53,8 +53,6 @@ class CombinedAgent(QLearningAgent):
         scores = []
         for action in range(self.n_actions):
             score = self.long_term.action_score(self.Q[state, action], state, action)
-            if state in self.short_term.recent_states:
-                score -= self.short_term.repetition_penalty
             scores.append(score)
         return int(np.argmax(scores))
 

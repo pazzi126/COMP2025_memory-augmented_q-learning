@@ -40,3 +40,9 @@ results/raw/*_seed*_training.csv
 results/raw/*_seed*_evaluation.csv
 results/experiment_log.txt
 results/hyperparameter_log.txt
+results/raw/
+results/experiment_log.txt
+results/hyperparameter_log.txt
+results/raw/
+results/experiment_log.txt
+results/hyperparameter_log.txt
