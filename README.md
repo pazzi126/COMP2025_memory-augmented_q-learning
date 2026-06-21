@@ -134,22 +134,25 @@ Unlike short-term memory, long-term memory is preserved across episodes.
 
 ### 4. Combined Memory Q-Learning
 
-The combined agent uses both memory mechanisms.
-
-Its action score can be represented as:
+The combined agent uses both memory mechanisms with distinct roles:
 
 ```text
 action_score =
     Q-value
     + long-term memory bonus
-    - short-term repetition penalty
+```
+
+```text
+adjusted_reward =
+    environment_reward
+    - short-term repetition penalty (for repeated recent states)
 ```
 
 The three components have different purposes:
 
 * The Q-table represents knowledge learned through temporal-difference updates.
-* Short-term memory discourages repeated behaviour within the current episode.
-* Long-term memory encourages state-action pairs associated with previous success.
+* Short-term memory discourages repeated behaviour through reward shaping.
+* Long-term memory encourages state-action pairs associated with previous success during action selection.
 
 ---
 

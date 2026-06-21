@@ -177,13 +177,14 @@ def build_main_results_table(aggregated_df: pd.DataFrame) -> pd.DataFrame:
         "final_success_rate_mean",
         "final_success_rate_std",
         "final_success_rate_ci95",
-        "rolling_auc_mean",
+        "normalized_rolling_auc_mean",
         "evaluation_episode_length_mean_mean",
         "evaluation_repeated_state_rate_mean_mean",
     ]
     main_df = aggregated_df[columns].copy()
     main_df = main_df.rename(
         columns={
+            "normalized_rolling_auc_mean": "normalized_rolling_auc",
             "evaluation_episode_length_mean_mean": "evaluation_episode_length_mean",
             "evaluation_repeated_state_rate_mean_mean": "evaluation_repeated_state_rate_mean",
         }
